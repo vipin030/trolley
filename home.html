@@ -1,0 +1,47 @@
+<html>
+<head>
+	 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <script type="text/javascript">
+     $(document).ready(function(){
+     	var items="";
+     	$.ajax({
+     		dataType:"json",
+            url:"product.json",
+            success:function(data)
+            {
+            	var col_count=4;
+            	var count=0;
+            	items+="<div class='product_row'>";
+                for(i in data)
+                {
+                	if(count==4){
+                		items+="</div><div class='product_row'>";
+                		count=0;
+                	}
+                		items+="<div class='pitems'><img src='"+data[i].image+"' width='150px' ></div>";
+                	count+=1;
+                }
+                items+="</div>";
+                $(".product").html(items);
+            }
+     	});
+     })
+     </script>
+     <style type="text/css">
+     .product_row
+     {
+     	clear:both;
+     }
+     .pitems
+     {
+     	float:left;
+     	width:300px;
+     	height:250px;
+     	border:1px solid #ccc;
+     }
+     </style>
+</head>
+	<body>
+		<div class="product"></div>
+	</body>
+</html>
